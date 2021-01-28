@@ -270,17 +270,15 @@ class _EasyLocalizationProvider extends InheritedWidget {
   /// Change app locale
   set locale(Locale locale) {
     // Check old locale
-    if (locale != _locale) {
-      assert(parent.supportedLocales.contains(locale));
-      if (parent.saveLocale) _saveLocale(locale);
-      log('Locale set ${locale.toString()}', name: 'Easy Localization');
+    assert(parent.supportedLocales.contains(locale));
+    if (parent.saveLocale) _saveLocale(locale);
+    log('Locale set ${locale.toString()}', name: 'Easy Localization');
 
-      bloc.onChange(Resource(
-          locale: locale,
-          path: parent.path,
-          assetLoader: parent.assetLoader,
-          useOnlyLangCode: parent.useOnlyLangCode));
-    }
+    bloc.onChange(Resource(
+        locale: locale,
+        path: parent.path,
+        assetLoader: parent.assetLoader,
+        useOnlyLangCode: parent.useOnlyLangCode));
   }
 
   void _saveLocale(Locale locale) async {
